@@ -19,6 +19,6 @@
  jupyter notebook
  ##To start application by:   python app.py
 
- #Client
+ # Client
  npm install
  npm start
