@@ -1,5 +1,6 @@
-Server
-py -3.10 -m venv venv
+# Server
+## Make a virtual env 3.10 version
+ py -3.10 -m venv venv
 .\venv\Scripts\activate
  pip install -r requirements.txt
  pip install numpy==1.23.5
@@ -11,9 +12,13 @@ py -3.10 -m venv venv
  pip install scikit-learn==1.0.2   
  pip install xgboost  
  pip install flask-cors   
- to open code on jupyter:
+ ##To open code on jupyter:
  pip install jupyter
  pip install ipykernel
  python -m ipykernel install --user --name=venv --display-name "Python 3.10"
-  jupyter notebook
-  start application by:python app.py
+ jupyter notebook
+ ##To start application by:   python app.py
+
+ #Client
+ npm install
+ npm start
