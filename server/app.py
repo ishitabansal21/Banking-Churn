@@ -110,21 +110,28 @@
 
 # if __name__ == "__main__":
 #     app.run(debug=True)
+
 import numpy as np
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import joblib
+from scripts.churn_eda import churn_eda
+from scripts.churning_model import generate_results
 
 app = Flask(__name__)
 CORS(app)
 
 # Load saved models
-dt_model = joblib.load('models/nate_decision_tree.sav')
-knn_model = joblib.load('models/nate_knn.sav')
-lr_model = joblib.load('models/nate_logistic_regression.sav')
-rf_model = joblib.load('models/nate_random_forest.sav')
-svm_model = joblib.load('models/SVM_model.sav')
-xgb_model = joblib.load('models/XGBoost_model.sav')
+try:
+    dt_model = joblib.load('models/nate_decision_tree.sav')
+    knn_model = joblib.load('models/nate_knn.sav')
+    lr_model = joblib.load('models/nate_logistic_regression.sav')
+    rf_model = joblib.load('models/nate_random_forest.sav')
+    svm_model = joblib.load('models/SVM_model.sav')
+    xgb_model = joblib.load('models/XGBoost_model.sav')
+except Exception as e:
+    app.logger.error(f"Error loading models: {e}")
+    raise e
 
 # Dictionary of all loaded models
 loaded_models = {
@@ -136,6 +143,8 @@ loaded_models = {
     'xgb': xgb_model
 }
 
+
+
 # Function to decode predictions
 def decode(pred):
     return 'Customer Exits' if pred == 1 else 'Customer Stays'
@@ -145,6 +154,15 @@ def predict():
     try:
         # Parse input JSON
         data = request.json
+
+        # Ensure all expected keys are present
+        required_keys = [
+            'creditScore', 'geography', 'gender', 'age', 'tenure',
+            'balance', 'numofproducts', 'hascrcard', 'isactivemember', 'estimatedsalary'
+        ]
+        if not all(key in data for key in required_keys):
+            return jsonify({"error": "Missing one or more required fields"}), 400
+        
         values = [
             data['creditScore'], data['geography'], data['gender'], data['age'],
             data['tenure'], data['balance'], data['numofproducts'],
@@ -171,8 +189,11 @@ def predict():
         # Model predictions
         predictions = []
         for model_name, model in loaded_models.items():
-            prediction = decode(model.predict(new_array)[0])
-            predictions.append({"model": model_name, "prediction": prediction})
+            try:
+                prediction = decode(model.predict(new_array)[0])
+                predictions.append({"model": model_name, "prediction": prediction})
+            except Exception as e:
+                app.logger.error(f"Error: {str(e)}")
 
         # Response JSON
         response = {
@@ -182,7 +203,37 @@ def predict():
 
         return jsonify(response), 200
     except Exception as e:
+        app.logger.error(f"Error in prediction: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/', methods=['GET'])
+def home():
+    """Health check route."""
+    return jsonify({"message": "Welcome to the Bank Customer Churn Prediction API!"})
+
+
+@app.route('/run-eda', methods=['GET'])
+def run_eda():
+    """Route to execute the EDA pipeline and return results."""
+    try:
+        eda_result = churn_eda()
+        return jsonify(eda_result), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route('/run-ml', methods=['GET'])
+def run_ml():
+    """Route to generate and return churn summary results"""
+    try:
+        # Generate the results
+        results = generate_results()
+
+        # Return as JSON response
+        return jsonify(results), 200
+    except Exception as e:
+        # Handle errors and return error message
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=8000)
