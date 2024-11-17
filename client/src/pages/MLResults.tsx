@@ -32,7 +32,7 @@ const MlResults: React.FC = () => {
             try {
                 const response = await fetch('http://localhost:8000/run-ml');
                 const data = await response.json();
-                console.log(data)
+
                 setMlData(data);
             } catch (error) {
                 console.error('Error fetching ML data:', error);

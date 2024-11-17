@@ -1,5 +1,7 @@
 # Server
 
+Python version: python-3.10.8
+
 - py -3.10 -m venv venv
 - .\venv\Scripts\activate
 - pip install -r requirements.txt

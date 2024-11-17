@@ -160,13 +160,21 @@ def predict():
             'creditScore', 'geography', 'gender', 'age', 'tenure',
             'balance', 'numofproducts', 'hascrcard', 'isactivemember', 'estimatedsalary'
         ]
-        if not all(key in data for key in required_keys):
-            return jsonify({"error": "Missing one or more required fields"}), 400
-        
+        missing_keys = [key for key in required_keys if not data.get(key)]
+        if missing_keys:
+            return jsonify({"error": f"Missing fields: {', '.join(missing_keys)}"}), 400
+
         values = [
-            data['creditScore'], data['geography'], data['gender'], data['age'],
-            data['tenure'], data['balance'], data['numofproducts'],
-            data['hascrcard'], data['isactivemember'], data['estimatedsalary']
+            float(data['creditScore']),
+            data['geography'],
+            data['gender'],
+            float(data['age']),
+            float(data['tenure']),
+            float(data['balance']),
+            int(data['numofproducts']),
+            int(data['hascrcard']),
+            int(data['isactivemember']),
+            float(data['estimatedsalary']),
         ]
 
         # Prepare data for model prediction
@@ -202,9 +210,13 @@ def predict():
         }
 
         return jsonify(response), 200
+    except ValueError as ve:
+        app.logger.error(f"ValueError: {str(ve)}")
+        return jsonify({"error": "Invalid input data"}), 400
     except Exception as e:
         app.logger.error(f"Error in prediction: {str(e)}")
         return jsonify({"error": str(e)}), 500
+
 
 @app.route('/', methods=['GET'])
 def home():

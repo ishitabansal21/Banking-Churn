@@ -48,6 +48,15 @@ const InputForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log(formData);
+
+    // Check for missing or invalid fields
+    const isFormValid = Object.values(formData).every((value) => value !== "");
+    if (!isFormValid) {
+      alert("Please fill out all fields before submitting.");
+      return;
+    }
+
     try {
       const res = await fetch("http://127.0.0.1:8000/predict", {
         method: "POST",
@@ -67,26 +76,30 @@ const InputForm: React.FC = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto bg-white p-6 shadow-md rounded-lg">
-      <h1 className="text-2xl font-bold text-center mb-6">
+    <div className="max-w-3xl mx-auto bg-white p-8 shadow-md rounded-lg mt-8">
+      <h1 className="text-3xl font-bold text-center mb-6 text-blue-600">
         Banking Churn Prediction
       </h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Credit Score */}
           <div>
-            <label className="block text-sm font-medium mb-1">Credit Score:</label>
+            <label className="block text-sm font-medium mb-2">Credit Score:</label>
             <input
               type="number"
               name="creditScore"
               value={formData.creditScore}
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              min={300}
+              max={900}
               required
             />
           </div>
 
+          {/* Geography */}
           <div>
-            <label className="block text-sm font-medium mb-1">Geography:</label>
+            <label className="block text-sm font-medium mb-2">Geography:</label>
             <select
               name="geography"
               value={formData.geography}
@@ -101,8 +114,9 @@ const InputForm: React.FC = () => {
             </select>
           </div>
 
+          {/* Gender */}
           <div>
-            <label className="block text-sm font-medium mb-1">Gender:</label>
+            <label className="block text-sm font-medium mb-2">Gender:</label>
             <select
               name="gender"
               value={formData.gender}
@@ -116,8 +130,9 @@ const InputForm: React.FC = () => {
             </select>
           </div>
 
+          {/* Age */}
           <div>
-            <label className="block text-sm font-medium mb-1">Age:</label>
+            <label className="block text-sm font-medium mb-2">Age:</label>
             <input
               type="number"
               name="age"
@@ -125,11 +140,14 @@ const InputForm: React.FC = () => {
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
+              min={0}
+              max={200}
             />
           </div>
 
+          {/* Tenure */}
           <div>
-            <label className="block text-sm font-medium mb-1">Tenure:</label>
+            <label className="block text-sm font-medium mb-2">Tenure:</label>
             <input
               type="number"
               name="tenure"
@@ -137,11 +155,13 @@ const InputForm: React.FC = () => {
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
+              min={0}
             />
           </div>
 
+          {/* Balance */}
           <div>
-            <label className="block text-sm font-medium mb-1">Balance:</label>
+            <label className="block text-sm font-medium mb-2">Balance:</label>
             <input
               type="number"
               name="balance"
@@ -149,11 +169,15 @@ const InputForm: React.FC = () => {
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
+              min={0}
             />
           </div>
 
+          {/* Number of Products */}
           <div>
-            <label className="block text-sm font-medium mb-1">Number of Products:</label>
+            <label className="block text-sm font-medium mb-2">
+              Number of Products:
+            </label>
             <select
               name="numofproducts"
               value={formData.numofproducts}
@@ -169,8 +193,11 @@ const InputForm: React.FC = () => {
             </select>
           </div>
 
+          {/* Has Credit Card */}
           <div>
-            <label className="block text-sm font-medium mb-1">Has Credit Card:</label>
+            <label className="block text-sm font-medium mb-2">
+              Has Credit Card:
+            </label>
             <select
               name="hascrcard"
               value={formData.hascrcard}
@@ -184,8 +211,11 @@ const InputForm: React.FC = () => {
             </select>
           </div>
 
+          {/* Is Active Member */}
           <div>
-            <label className="block text-sm font-medium mb-1">Is Active Member:</label>
+            <label className="block text-sm font-medium mb-2">
+              Is Active Member:
+            </label>
             <select
               name="isactivemember"
               value={formData.isactivemember}
@@ -199,8 +229,11 @@ const InputForm: React.FC = () => {
             </select>
           </div>
 
+          {/* Estimated Salary */}
           <div>
-            <label className="block text-sm font-medium mb-1">Estimated Salary:</label>
+            <label className="block text-sm font-medium mb-2">
+              Estimated Salary:
+            </label>
             <input
               type="number"
               name="estimatedsalary"
@@ -208,26 +241,29 @@ const InputForm: React.FC = () => {
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
+              min={0}
             />
           </div>
         </div>
 
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition"
+          className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition"
         >
           Predict
         </button>
       </form>
 
       {response && (
-        <div className="mt-6 p-4 bg-gray-100 rounded-lg shadow">
-          <h2 className="text-lg font-semibold">Customer Data:</h2>
-          <pre className="bg-white p-4 rounded overflow-x-auto">
+        <div className="mt-8 bg-gray-50 p-6 rounded-lg shadow-md">
+          <h2 className="text-lg font-semibold mb-4 text-gray-700">Customer Data:</h2>
+          <pre className="bg-white p-4 rounded-lg overflow-x-auto">
             {JSON.stringify(response.customer, null, 2)}
           </pre>
-          <h2 className="text-lg font-semibold mt-4">Model Predictions:</h2>
-          <ul className="list-disc list-inside">
+          <h2 className="text-lg font-semibold mt-6 text-gray-700">
+            Model Predictions:
+          </h2>
+          <ul className="list-disc list-inside mt-4">
             {response.predictions.map((pred, index) => (
               <li key={index}>
                 <strong>{pred.model}</strong>: {pred.prediction}

@@ -19,7 +19,6 @@ const EdaResults: React.FC = () => {
             try {
                 const response = await fetch('http://localhost:8000/run-eda');
                 const data = await response.json();
-                console.log(data)
                 setEdaData(data);
             } catch (error) {
                 console.error('Error fetching EDA data:', error);
