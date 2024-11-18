@@ -19,6 +19,8 @@ interface ConfusionMatrix {
 }
 
 interface MLData {
+    accuracy_pie: string;
+    model_performance_metrics: string;
     model_metrics: Record<string, Metrics>;
     svm_metrics: Record<string, Metrics>;
     confusion_matrices: Record<string, ConfusionMatrix>;
@@ -31,8 +33,9 @@ const MlResults: React.FC = () => {
         const fetchMlData = async () => {
             try {
                 const response = await fetch('http://localhost:8000/run-ml');
-                const data = await response.json();
 
+                const data = await response.json();
+                console.log(data);
                 setMlData(data);
             } catch (error) {
                 console.error('Error fetching ML data:', error);
@@ -63,7 +66,13 @@ const MlResults: React.FC = () => {
                     </Card>
                 ))}
             </Card>
-            <Card title="Confusion Matrices">
+            <Card title="Accuracy Distribution Across Models">
+                <ImageDisplay title="Pie Chart" base64Image={mlData.accuracy_pie} />
+            </Card>
+            <Card title="Model Performance Metrics">
+                <ImageDisplay title="Bar Graph" base64Image={mlData.model_performance_metrics} />
+            </Card>
+            {/* <Card title="Confusion Matrices">
                 {Object.entries(mlData.confusion_matrices).map(([model, matrices]) => (
                     <div key={model} className="mb-4">
                         <h3 className="font-semibold">{model}</h3>
@@ -71,7 +80,7 @@ const MlResults: React.FC = () => {
                         <ImageDisplay title={`${model} Normalized Confusion Matrix`} base64Image={matrices.normalized} />
                     </div>
                 ))}
-            </Card>
+            </Card> */}
         </div>
     );
 };

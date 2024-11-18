@@ -91,6 +91,43 @@ def plot_confusion_matrix(model, X_test, y_test, title):
     plt.ylabel('Actual')
     return encode_plot_to_base64()
 
+def plot_accuracy_pie(eval_df):
+    """Plots a pie chart for model accuracy."""
+    models = eval_df.index
+    accuracy = eval_df['accuracy'] * 100
+
+    fig, ax = plt.subplots(figsize=(8, 8))
+    wedges, _ = ax.pie(accuracy, startangle=90, colors=plt.cm.tab10.colors)
+
+    for wedge, model, acc in zip(wedges, models, accuracy):
+        angle = (wedge.theta2 - wedge.theta1) / 2. + wedge.theta1
+        x = np.cos(np.radians(angle))
+        y = np.sin(np.radians(angle))
+        ax.text(x * 0.7, y * 0.7, f"{model} - {acc:.0f}%", ha='center', va='center', fontsize=12, color="white", weight="bold")
+
+    plt.title('Accuracy Distribution Across Models')
+    return encode_plot_to_base64()
+
+
+def plot_model_metrics(eval_df):
+    """Plots a bar chart for model metrics."""
+    metrics = ['accuracy', 'precision', 'recall', 'f1_macro']
+    models = eval_df.index
+    x = np.arange(len(models))
+    bar_width = 0.2
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+    for i, metric in enumerate(metrics):
+        ax.bar(x + i * bar_width, eval_df[metric], width=bar_width, label=metric.capitalize())
+
+    ax.set_title('Model Performance Metrics', fontsize=16)
+    ax.set_xticks(x + bar_width * (len(metrics) - 1) / 2)
+    ax.set_xticklabels(models, fontsize=12)
+    ax.set_ylabel('Scores', fontsize=14)
+    ax.set_ylim(0, 1)
+    ax.legend(title="Metrics", fontsize=12)
+    ax.grid(axis='y', linestyle='--', alpha=0.7)
+    return encode_plot_to_base64()
 
 def plot_normalized_confusion_matrix(model, X_test, y_test, title):
     """Plots a normalized confusion matrix."""
@@ -120,9 +157,10 @@ def generate_results():
     # Evaluate all models
     eval_df = evaluation(loaded_models, X_test, y_test)
 
-    # Generate evaluation results as base64-encoded plots
     results = {
         "model_metrics": eval_df.to_dict(),
+        "accuracy_pie": plot_accuracy_pie(eval_df),
+        "model_performance_metrics": plot_model_metrics(eval_df),
         "confusion_matrices": {}
     }
 

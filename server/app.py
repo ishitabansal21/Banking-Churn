@@ -231,6 +231,7 @@ def run_eda():
         eda_result = churn_eda()
         return jsonify(eda_result), 200
     except Exception as e:
+        app.logger.error(f"Error: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
 
@@ -245,6 +246,7 @@ def run_ml():
         return jsonify(results), 200
     except Exception as e:
         # Handle errors and return error message
+        app.logger.error(f"Error: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
