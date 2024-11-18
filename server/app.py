@@ -30,8 +30,6 @@ loaded_models = {
     'xgb': xgb_model
 }
 
-
-
 # Function to decode predictions
 def decode(pred):
     return 'Customer Exits' if pred == 1 else 'Customer Stays'
