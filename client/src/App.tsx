@@ -17,7 +17,7 @@ const App: React.FC = () => (
         <Route path="/" element={<Home />} />
         <Route path="/eda-results" element={<EdaResults />} />
         <Route path="/dt-model" element={<DecisionTree />} />
-        <Route path="/rm-model" element={<RandomForest />} />
+        <Route path="/rf-model" element={<RandomForest />} />
         <Route path="/lr-model" element={<LogisticRegression />} />
         <Route path="/xg-model" element={<XGBoost />} />
         <Route path="/svm-model" element={<SVM />} />
