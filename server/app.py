@@ -249,5 +249,76 @@ def run_ml():
         app.logger.error(f"Error: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
+
+@app.route('/run-dt', methods=['GET'])
+def run_ml():
+    """Route to generate and return DT Modelling results"""
+    try:
+        # Generate the results
+        # results = generate_results()
+
+        # Return as JSON response
+        return jsonify("DT Modelling Results"), 200
+    except Exception as e:
+        # Handle errors and return error message
+        app.logger.error(f"Error: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/run-lr', methods=['GET'])
+def run_lr():
+    """Route to generate and return LR Modelling results"""
+    try:
+        # Generate the results
+        # results = generate_results()
+
+        # Return as JSON response
+        return jsonify("LR Modelling Results"), 200
+    except Exception as e:
+        # Handle errors and return error message
+        app.logger.error(f"Error: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+    
+@app.route('/run-rm', methods=['GET'])
+def run_rm():
+    """Route to generate and return RM Modelling results"""
+    try:
+        # Generate the results
+        # results = generate_results()
+
+        # Return as JSON response
+        return jsonify("RM Modelling Results"), 200
+    except Exception as e:
+        # Handle errors and return error message
+        app.logger.error(f"Error: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/run-xgboost', methods=['GET'])
+def run_xgboost():
+    """Route to generate and return XGBoost Modelling results"""
+    try:
+        # Generate the results
+        # results = generate_results()
+
+        # Return as JSON response
+        return jsonify("XGBoost Modelling Results"), 200
+    except Exception as e:
+        # Handle errors and return error message
+        app.logger.error(f"Error: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+    
+@app.route('/run-svm', methods=['GET'])
+def run_svm():
+    """Route to generate and return SVM Modelling results"""
+    try:
+        # Generate the results
+        # results = generate_results()
+
+        # Return as JSON response
+        return jsonify("SVM Modelling Results"), 200
+    except Exception as e:
+        # Handle errors and return error message
+        app.logger.error(f"Error: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+
 if __name__ == "__main__":
     app.run(debug=True, port=8000)
