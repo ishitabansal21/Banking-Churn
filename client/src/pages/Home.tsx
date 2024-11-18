@@ -24,6 +24,36 @@ const Home: React.FC = () => (
                     View ML Model Results
                 </Link>
                 <Link
+                    to="/dt-model"
+                    className="px-6 py-3 bg-indigo-700 hover:bg-indigo-800 text-white rounded-lg font-semibold shadow-lg transition transform hover:scale-105"
+                >
+                    View Decision Tree Model Results
+                </Link>
+                <Link
+                    to="/rf-model"
+                    className="px-6 py-3 bg-indigo-700 hover:bg-indigo-800 text-white rounded-lg font-semibold shadow-lg transition transform hover:scale-105"
+                >
+                    View Random Forest Model Results
+                </Link>
+                <Link
+                    to="/lr-model"
+                    className="px-6 py-3 bg-indigo-700 hover:bg-indigo-800 text-white rounded-lg font-semibold shadow-lg transition transform hover:scale-105"
+                >
+                    View Logistic Regression Model Results
+                </Link>
+                <Link
+                    to="/xg-model"
+                    className="px-6 py-3 bg-indigo-700 hover:bg-indigo-800 text-white rounded-lg font-semibold shadow-lg transition transform hover:scale-105"
+                >
+                    View XGBoost Model Results
+                </Link>
+                <Link
+                    to="/svm-model"
+                    className="px-6 py-3 bg-indigo-700 hover:bg-indigo-800 text-white rounded-lg font-semibold shadow-lg transition transform hover:scale-105"
+                >
+                    View SVM Model Results
+                </Link>
+                <Link
                     to="/input-form"
                     className="px-6 py-3 bg-green-700 hover:bg-green-800 text-white rounded-lg font-semibold shadow-lg transition transform hover:scale-105"
                 >
