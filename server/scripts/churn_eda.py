@@ -32,6 +32,7 @@ def preprocess_data(df):
     df.drop(['Geography'], axis=1, inplace=True)
     
     return df
+
 def plot_churn_risk_by_gender(df):
     """Generate Churn Risk per Gender (Count and Percentage) plots."""
     try:
@@ -69,6 +70,7 @@ def plot_churn_risk_by_gender(df):
         return encode_plot_to_base64()
     except Exception as e:
         raise ValueError(f"Error generating churn risk by gender plot: {str(e)}")
+
 def plot_churn_risk_by_geography(df):
     """Generate Churn Risk per Geography (Count and Percentage) plots."""
     try:
