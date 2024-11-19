@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Button } from "./ui/button";
+import { Label } from "./ui/label";
 
 interface FormData {
   creditScore: string;
@@ -76,16 +78,17 @@ const InputForm: React.FC = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto bg-white p-8 shadow-md rounded-lg mt-8">
-      <h1 className="text-3xl font-bold text-center mb-6 text-blue-600">
+    <div className="max-w-3xl mx-auto bg-gray-300 p-8 shadow-md rounded-lg mt-8">
+      <h1 className="text-3xl font-bold text-center mb-6 ">
         Banking Churn Prediction
       </h1>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Credit Score */}
           <div>
-            <label className="block text-sm font-medium mb-2">Credit Score:</label>
+            <Label htmlFor="creditScore">Credit Score:</Label>
             <input
+              id="creditScore"
               type="number"
               name="creditScore"
               value={formData.creditScore}
@@ -99,8 +102,9 @@ const InputForm: React.FC = () => {
 
           {/* Geography */}
           <div>
-            <label className="block text-sm font-medium mb-2">Geography:</label>
+            <Label htmlFor="geography">Geography:</Label>
             <select
+              id="geography"
               name="geography"
               value={formData.geography}
               onChange={handleChange}
@@ -116,8 +120,9 @@ const InputForm: React.FC = () => {
 
           {/* Gender */}
           <div>
-            <label className="block text-sm font-medium mb-2">Gender:</label>
+            <Label htmlFor="gender">Gender:</Label>
             <select
+              id="gender"
               name="gender"
               value={formData.gender}
               onChange={handleChange}
@@ -132,8 +137,9 @@ const InputForm: React.FC = () => {
 
           {/* Age */}
           <div>
-            <label className="block text-sm font-medium mb-2">Age:</label>
+            <Label htmlFor="age">Age:</Label>
             <input
+              id="age"
               type="number"
               name="age"
               value={formData.age}
@@ -147,8 +153,9 @@ const InputForm: React.FC = () => {
 
           {/* Tenure */}
           <div>
-            <label className="block text-sm font-medium mb-2">Tenure:</label>
+            <Label htmlFor="tenure">Tenure:</Label>
             <input
+              id="tenure"
               type="number"
               name="tenure"
               value={formData.tenure}
@@ -161,8 +168,9 @@ const InputForm: React.FC = () => {
 
           {/* Balance */}
           <div>
-            <label className="block text-sm font-medium mb-2">Balance:</label>
+            <Label htmlFor="balance">Balance:</Label>
             <input
+              id="balance"
               type="number"
               name="balance"
               value={formData.balance}
@@ -175,10 +183,9 @@ const InputForm: React.FC = () => {
 
           {/* Number of Products */}
           <div>
-            <label className="block text-sm font-medium mb-2">
-              Number of Products:
-            </label>
+            <Label htmlFor="numofproducts">Number of Products:</Label>
             <select
+              id="numofproducts"
               name="numofproducts"
               value={formData.numofproducts}
               onChange={handleChange}
@@ -195,10 +202,9 @@ const InputForm: React.FC = () => {
 
           {/* Has Credit Card */}
           <div>
-            <label className="block text-sm font-medium mb-2">
-              Has Credit Card:
-            </label>
+            <Label htmlFor="hascrcard">Has Credit Card:</Label>
             <select
+              id="hascrcard"
               name="hascrcard"
               value={formData.hascrcard}
               onChange={handleChange}
@@ -213,10 +219,9 @@ const InputForm: React.FC = () => {
 
           {/* Is Active Member */}
           <div>
-            <label className="block text-sm font-medium mb-2">
-              Is Active Member:
-            </label>
+            <Label htmlFor="isactivemember">Is Active Member:</Label>
             <select
+              id="isactivemember"
               name="isactivemember"
               value={formData.isactivemember}
               onChange={handleChange}
@@ -231,10 +236,9 @@ const InputForm: React.FC = () => {
 
           {/* Estimated Salary */}
           <div>
-            <label className="block text-sm font-medium mb-2">
-              Estimated Salary:
-            </label>
+            <Label htmlFor="estimatedsalary">Estimated Salary:</Label>
             <input
+              id="estimatedsalary"
               type="number"
               name="estimatedsalary"
               value={formData.estimatedsalary}
@@ -246,12 +250,12 @@ const InputForm: React.FC = () => {
           </div>
         </div>
 
-        <button
+        <Button
           type="submit"
-          className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition"
+          className="w-full"
         >
           Predict
-        </button>
+        </Button>
       </form>
 
       {response && (

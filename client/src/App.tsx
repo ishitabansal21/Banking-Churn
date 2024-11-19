@@ -1,4 +1,3 @@
-// src/App.tsx
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import EdaResults from './pages/EdaResults';
@@ -10,10 +9,13 @@ import LogisticRegression from './pages/LogisticRegression';
 import XGBoost from './pages/XGBoost';
 import { SVM } from './pages/SVM';
 import DecisionTree from './pages/DecisionTree';
+import Navbar from './components/Navbar'; // Create Navbar as a separate component
 
 const App: React.FC = () => (
   <Router>
-    <div className="min-h-screen bg-gray-50">
+    <div className=" bg-gray-50">
+      {/* Navbar always visible */}
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/eda-results" element={<EdaResults />} />

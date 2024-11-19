@@ -1,7 +1,7 @@
 // src/pages/MlResults.tsx
 import React, { useEffect, useState } from 'react';
-import Card from '../components/Card';
 import ImageDisplay from '../components/ImageDisplay';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 
 
@@ -50,29 +50,31 @@ const MlResults: React.FC = () => {
     }
 
     return (
-        <div className="p-6">
-            <h1 className="text-3xl font-bold mb-4">ML Model Results</h1>
-            <Card title='Model Metrics'>
+        < Card >
+            <CardHeader>
+                <CardTitle className=' text-3xl'>ML Model Results</CardTitle>
+                <CardDescription>Results of The Churning Model Files</CardDescription>
+            </CardHeader>
+            <CardContent className='flex justify-evenly items-center flex-wrap'>
+
+                <ImageDisplay base64Image={mlData.accuracy_pie} />
+                <ImageDisplay base64Image={mlData.model_performance_metrics} />
+
+                {/* <Card title='Model Metrics'>
                 {Object.entries(mlData.model_metrics).map(([model, metrics]) => (
                     <Card key={model} title={`${model} Metrics`}>
                         <pre className="bg-gray-100 p-4 rounded overflow-x-auto">{JSON.stringify(metrics, null, 2)}</pre>
                     </Card>
                 ))}
             </Card>
-            <Card title='SVM Metrics'>
+                <Card title='SVM Metrics'>
                 {Object.entries(mlData.svm_metrics).map(([model, metrics]) => (
                     <Card key={model} title={`${model} Metrics`}>
                         <pre className="bg-gray-100 p-4 rounded overflow-x-auto">{JSON.stringify(metrics, null, 2)}</pre>
                     </Card>
                 ))}
             </Card>
-            <Card title="Accuracy Distribution Across Models">
-                <ImageDisplay title="Pie Chart" base64Image={mlData.accuracy_pie} />
-            </Card>
-            <Card title="Model Performance Metrics">
-                <ImageDisplay title="Bar Graph" base64Image={mlData.model_performance_metrics} />
-            </Card>
-            {/* <Card title="Confusion Matrices">
+                <Card title="Confusion Matrices">
                 {Object.entries(mlData.confusion_matrices).map(([model, matrices]) => (
                     <div key={model} className="mb-4">
                         <h3 className="font-semibold">{model}</h3>
@@ -81,7 +83,10 @@ const MlResults: React.FC = () => {
                     </div>
                 ))}
             </Card> */}
-        </div>
+            </CardContent>
+        </Card >
+
+
     );
 };
 

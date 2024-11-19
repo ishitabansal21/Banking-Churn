@@ -1,7 +1,8 @@
 // src/pages/EdaResults.tsx
 import React, { useEffect, useState } from 'react';
-import Card from '../components/Card';
+// import Card from '../components/Card';
 import ImageDisplay from '../components/ImageDisplay';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface EdaData {
     churn_risk_by_gender: string;
@@ -36,30 +37,29 @@ const EdaResults: React.FC = () => {
     }
 
     return (
-        <div className="p-6">
-            <h1 className="text-3xl font-bold mb-4">EDA Results</h1>
-            <Card title="Summary Statistics">
+        < Card >
+            <CardHeader>
+                <CardTitle className='text-3xl'>EDA Results</CardTitle>
+                <CardDescription>Results of The Chruning Eda File</CardDescription>
+            </CardHeader>
+            <CardContent className='flex items-center justify-evenly flex-wrap'>
+                {/* <Card title="Summary Statistics">
                 <pre className="bg-gray-100 p-4 rounded overflow-x-auto">{JSON.stringify(JSON.parse(edaData.summary), null, 2)}</pre>
-            </Card>
-            <Card title="Churn risk By Gender">
-                <ImageDisplay title="Gender" base64Image={edaData.churn_risk_by_gender} />
-            </Card>
-            <Card title="Churn risk By Geopgraphy">
-                <ImageDisplay title="Geography" base64Image={edaData.churn_risk_by_geography} />
-            </Card>
-            <Card title="Histograms">
+            </Card> */}
+                <ImageDisplay base64Image={edaData.churn_risk_by_gender} />
+                <ImageDisplay base64Image={edaData.churn_risk_by_geography} />
+                <div className='flex justify-evenly items-center'>
+                    <ImageDisplay title="Gender Distribution" base64Image={edaData.gender_distribution} />
+                    <ImageDisplay title="Geography Distribution" base64Image={edaData.geography_distribution} />
+                </div>
+                {/* <ImageDisplay title="Correlation Heatmap" base64Image={edaData.correlation_heatmap} /> */}
+                {/* 
                 <ImageDisplay title="Histogram" base64Image={edaData.histogram} />
-            </Card>
-            <Card title="Gender Distribution">
-                <ImageDisplay title="Gender Distribution" base64Image={edaData.gender_distribution} />
-            </Card>
-            <Card title="Geography Distribution">
-                <ImageDisplay title="Geography Distribution" base64Image={edaData.geography_distribution} />
-            </Card>
-            <Card title="Correlation Heatmap">
-                <ImageDisplay title="Correlation Heatmap" base64Image={edaData.correlation_heatmap} />
-            </Card>
-        </div>
+            */}
+            </CardContent>
+        </Card >
+
+
     );
 };
 
