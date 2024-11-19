@@ -4,6 +4,7 @@ from flask_cors import CORS
 import joblib
 from scripts.churn_eda import churn_eda
 from scripts.churning_model import generate_results
+from scripts.DT_modelling import DT_modelling
 
 app = Flask(__name__)
 CORS(app)
@@ -136,14 +137,14 @@ def run_ml():
 
 
 @app.route('/run-dt', methods=['GET'])
-def run_ml():
+def run_dt():
     """Route to generate and return DT Modelling results"""
     try:
         # Generate the results
-        # results = generate_results()
+        results = DT_modelling()
 
         # Return as JSON response
-        return jsonify("DT Modelling Results"), 200
+        return jsonify(results), 200
     except Exception as e:
         # Handle errors and return error message
         app.logger.error(f"Error: {str(e)}")

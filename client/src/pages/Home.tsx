@@ -10,7 +10,7 @@ const Home: React.FC = () => (
                 Explore customer churn predictions and insights with interactive data
                 analysis tools.
             </p>
-            <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <Link
                     to="/eda-results"
                     className="px-6 py-3 bg-blue-700 hover:bg-blue-800 text-white rounded-lg font-semibold shadow-lg transition transform hover:scale-105"

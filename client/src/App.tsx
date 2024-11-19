@@ -4,11 +4,12 @@ import Home from './pages/Home';
 import EdaResults from './pages/EdaResults';
 import MlResults from './pages/MLResults';
 import InputForm from './components/InputForm';
-import { DecisionTree } from './pages/DecisionTree';
+
 import RandomForest from './pages/RandomForest';
 import LogisticRegression from './pages/LogisticRegression';
 import XGBoost from './pages/XGBoost';
 import { SVM } from './pages/SVM';
+import DecisionTree from './pages/DecisionTree';
 
 const App: React.FC = () => (
   <Router>
