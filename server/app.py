@@ -12,7 +12,6 @@ CORS(app)
 # Load saved models
 try:
     dt_model = joblib.load('models/nate_decision_tree.sav')
-    knn_model = joblib.load('models/nate_knn.sav')
     lr_model = joblib.load('models/nate_logistic_regression.sav')
     rf_model = joblib.load('models/nate_random_forest.sav')
     svm_model = joblib.load('models/SVM_model.sav')
@@ -23,12 +22,11 @@ except Exception as e:
 
 # Dictionary of all loaded models
 loaded_models = {
-    'dt': dt_model,
-    'knn': knn_model,
-    'lr': lr_model,
-    'rf': rf_model,
-    'svm': svm_model,
-    'xgb': xgb_model
+    'Decision Tree': dt_model,
+    'Logistic Regression': lr_model,
+    'Random Forest': rf_model,
+    'SVM': svm_model,
+    'XGBoost': xgb_model
 }
 
 # Function to decode predictions

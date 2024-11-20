@@ -191,7 +191,7 @@ def DT_modelling():
     try:
         # Load data
         script_dir = os.path.dirname(os.path.abspath(__file__))
-        file_path = os.path.join(script_dir, "../resources/analytical_base_table.csv")
+        file_path = os.path.join(script_dir, "../Resources/analytical_base_table.csv")
         if not os.path.exists(file_path):
             raise FileNotFoundError(f"File not found: {file_path}")
         abt = pd.read_csv(file_path)
