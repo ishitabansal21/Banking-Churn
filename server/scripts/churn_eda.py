@@ -117,7 +117,7 @@ def churn_eda():
     try:
         # Load dataset
         script_dir = os.path.dirname(os.path.abspath(__file__))
-        file_path = os.path.join(script_dir, '../resources/Churn_Modelling.csv')
+        file_path = os.path.join(script_dir, '../Resources/Churn_Modelling.csv')
         df = pd.read_csv(file_path)
 
         # Drop unused features
