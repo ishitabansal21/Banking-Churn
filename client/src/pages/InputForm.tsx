@@ -1,6 +1,7 @@
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
 import React, { useState } from "react";
-import { Button } from "./ui/button";
-import { Label } from "./ui/label";
+
 
 interface FormData {
   creditScore: string;
