@@ -8,6 +8,7 @@ from scripts.DT_modelling import generate_dt_plots
 from scripts.XGBoost_modelling import generate_xg_plots
 from scripts.RF_modelling import generate_rf_plots
 from scripts.LR_modelling import generate_lr_plots
+from scripts.SVM_modelling import generate_svm_plots
 
 app = Flask(__name__)
 CORS(app)
@@ -198,10 +199,10 @@ def run_svm():
     """Route to generate and return SVM Modelling results"""
     try:
         # Generate the results
-        # results = generate_results()
+        results = generate_svm_plots()
 
         # Return as JSON response
-        return jsonify("SVM Modelling Results"), 200
+        return jsonify(results), 200
     except Exception as e:
         # Handle errors and return error message
         app.logger.error(f"Error: {str(e)}")

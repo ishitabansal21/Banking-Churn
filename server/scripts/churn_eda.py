@@ -175,11 +175,11 @@ def churn_eda():
         return {
             "churn_risk_by_gender": gender_risk_plot,
             "churn_risk_by_geography": geography_risk_plot,
-            "histogram": hist_base64,
+            # "histogram": hist_base64,
             "gender_distribution": gender_base64,
             "geography_distribution": geography_base64,
-            "correlation_heatmap": corr_base64,
-            "summary": df.describe().to_json()
+            # "correlation_heatmap": corr_base64,
+            # "summary": df.describe().to_json()
         }
     except Exception as e:
         return {"error": str(e)}

@@ -53,5 +53,3 @@ const RandomForest: React.FC = () => {
 };
 
 export default RandomForest;
-
-
