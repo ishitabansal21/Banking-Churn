@@ -27,19 +27,19 @@ svm_model_s = joblib.load(os.path.join(models_dir, 'SVM_model_s.sav'))
 
 # Model dictionaries
 models = {
-    'dt': 'Decision Tree',
-    'lr': 'Logistic Regression',
-    'rf': 'Random Forest',
-    'svm': 'Support Vector Machine (SVM)',
-    'xgb': 'XGBoost'
+    'Decision Tree': 'Decision Tree',
+    'Logistic': 'Logistic Regression',
+    'Random Forest': 'Random Forest',
+    'SVM': 'Support Vector Machine (SVM)',
+    'XGBoost': 'XGBoost'
 }
 
 loaded_models = {
-    'dt': dt_model,
-    'lr': lr_model,
-    'rf': rf_model,
-    'svm': svm_model,
-    'xgb': xgb_model
+    'Decision Tree': dt_model,
+    'Logistic': lr_model,
+    'Random Forest': rf_model,
+    'SVM': svm_model,
+    'XGBoost': xgb_model
 }
 
 models_svm = {
