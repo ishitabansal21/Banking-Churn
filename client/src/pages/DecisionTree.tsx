@@ -1,12 +1,19 @@
 // src/pages/DecisionTree.tsx
-import React, { useEffect, } from 'react';
+import ImageDisplay from '@/components/ImageDisplay';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import React, { useEffect, useState, } from 'react';
 
-// interface DecisionTreeData {
-
-// }
+interface DecisionTreeData {
+    accuracy_plot: string;
+    classification_report: string;
+    confusion_matrix: string;
+    feature_importance: string;
+    precision_recall_curve: string;
+    roc_curve: string;
+}
 
 const DecisionTree: React.FC = () => {
-    // const [DTData, setDTData] = useState<any | null>(null);
+    const [DTData, setDTData] = useState<DecisionTreeData | null>(null);
 
     useEffect(() => {
         const fetchEdaData = async () => {
@@ -14,7 +21,7 @@ const DecisionTree: React.FC = () => {
                 const response = await fetch('http://localhost:8000/run-dt');
                 const data = await response.json();
                 console.log(data);
-                // setDTData(data);
+                setDTData(data);
             } catch (error) {
                 console.error('Error fetching dt data:', error);
             }
@@ -23,16 +30,28 @@ const DecisionTree: React.FC = () => {
         fetchEdaData();
     }, []);
 
-    // if (!DTData) {
-    //     return <div className="text-center text-lg mt-8">Loading...</div>;
-    // }
+    if (!DTData) {
+        return <div className="text-center text-lg mt-8">Loading...</div>;
+    }
 
     return (
-        <div className="p-6">
-            <h1 className="text-3xl font-bold mb-4">Decision Tree Results</h1>
-
-        </div>
+        < Card >
+            <CardHeader>
+                <CardTitle className='text-3xl'>Decision Tree Results</CardTitle>
+                <CardDescription>Results of The Descision Tree File</CardDescription>
+            </CardHeader>
+            <CardContent className='flex items-center justify-evenly flex-wrap'>
+                <ImageDisplay base64Image={DTData.accuracy_plot} />
+                <ImageDisplay base64Image={DTData.classification_report} />
+                <ImageDisplay base64Image={DTData.confusion_matrix} />
+                <ImageDisplay base64Image={DTData.feature_importance} />
+                <ImageDisplay base64Image={DTData.precision_recall_curve} />
+                <ImageDisplay base64Image={DTData.roc_curve} />
+            </CardContent>
+        </Card >
     );
 };
 
 export default DecisionTree;
+
+

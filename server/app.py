@@ -4,7 +4,10 @@ from flask_cors import CORS
 import joblib
 from scripts.churn_eda import churn_eda
 from scripts.churning_model import generate_results
-from scripts.DT_modelling import DT_modelling
+from scripts.DT_modelling import generate_dt_plots
+from scripts.XGBoost_modelling import generate_xg_plots
+from scripts.RF_modelling import generate_rf_plots
+from scripts.LR_modelling import generate_lr_plots
 
 app = Flask(__name__)
 CORS(app)
@@ -139,7 +142,7 @@ def run_dt():
     """Route to generate and return DT Modelling results"""
     try:
         # Generate the results
-        results = DT_modelling()
+        results = generate_dt_plots()
 
         # Return as JSON response
         return jsonify(results), 200
@@ -153,24 +156,24 @@ def run_lr():
     """Route to generate and return LR Modelling results"""
     try:
         # Generate the results
-        # results = generate_results()
+        results = generate_lr_plots()
 
         # Return as JSON response
-        return jsonify("LR Modelling Results"), 200
+        return jsonify(results), 200
     except Exception as e:
         # Handle errors and return error message
         app.logger.error(f"Error: {str(e)}")
         return jsonify({"error": str(e)}), 500
     
-@app.route('/run-rm', methods=['GET'])
-def run_rm():
+@app.route('/run-rf', methods=['GET'])
+def run_rf():
     """Route to generate and return RM Modelling results"""
     try:
         # Generate the results
-        # results = generate_results()
+        results = generate_rf_plots()
 
         # Return as JSON response
-        return jsonify("RM Modelling Results"), 200
+        return jsonify(results), 200
     except Exception as e:
         # Handle errors and return error message
         app.logger.error(f"Error: {str(e)}")
@@ -181,10 +184,10 @@ def run_xgboost():
     """Route to generate and return XGBoost Modelling results"""
     try:
         # Generate the results
-        # results = generate_results()
+        results = generate_xg_plots()
 
         # Return as JSON response
-        return jsonify("XGBoost Modelling Results"), 200
+        return jsonify(results), 200
     except Exception as e:
         # Handle errors and return error message
         app.logger.error(f"Error: {str(e)}")

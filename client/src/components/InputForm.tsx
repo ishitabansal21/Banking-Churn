@@ -259,21 +259,25 @@ const InputForm: React.FC = () => {
       </form>
 
       {response && (
-        <div className="mt-8 bg-gray-50 p-6 rounded-lg shadow-md">
-          <h2 className="text-lg font-semibold mb-4 text-gray-700">Customer Data:</h2>
-          <pre className="bg-white p-4 rounded-lg overflow-x-auto">
-            {JSON.stringify(response.customer, null, 2)}
-          </pre>
-          <h2 className="text-lg font-semibold mt-6 text-gray-700">
-            Model Predictions:
-          </h2>
-          <ul className="list-disc list-inside mt-4">
-            {response.predictions.map((pred, index) => (
-              <li key={index}>
-                <strong>{pred.model}</strong>: {pred.prediction}
-              </li>
-            ))}
-          </ul>
+        <div className=" flex mt-8 justify-around bg-gray-50 p-6 rounded-lg shadow-md">
+          <div>
+            <h2 className="text-lg font-semibold  text-gray-700">Customer Data:</h2>
+            <pre className=" p-4 rounded-lg overflow-x-auto">
+              {JSON.stringify(response.customer, null, 2)}
+            </pre>
+          </div>
+          <div>
+            <h2 className="text-lg font-semibold  text-gray-700">
+              Model Predictions:
+            </h2>
+            <ul className="list-disc list-inside mt-4">
+              {response.predictions.map((pred, index) => (
+                <li key={index}>
+                  <strong>{pred.model}</strong>: {pred.prediction}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       )}
     </div>
