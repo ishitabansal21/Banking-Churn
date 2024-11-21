@@ -7,11 +7,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 interface EdaData {
     churn_risk_by_gender: string;
     churn_risk_by_geography: string;
-    summary: string; // JSON string containing summary statistics
-    histogram: string; // Base64 string for histogram image
+    // summary: string; // JSON string containing summary statistics
+    // histogram: string; // Base64 string for histogram image
     gender_distribution: string; // Base64 string for gender distribution image
     geography_distribution: string; // Base64 string for geography distribution image
-    correlation_heatmap: string; // Base64 string for correlation heatmap image
+    // correlation_heatmap: string; // Base64 string for correlation heatmap image
 }
 
 const EdaResults: React.FC = () => {
