@@ -1,56 +1,35 @@
 import EdaResults from "@/components/EdaResults";
 import MlResults from "@/components/MLResults";
-import image_1 from "@/assets/image_1.jpg";
+// import image_1 from "@/assets/image_1.jpg";
 import image_2 from "@/assets/image_2.jpg";
 import image_3 from "@/assets/image_3.jpg";
 
 const Home: React.FC = () => (
-    <div className="mx-auto text-center p-8 bg-opacity-90 backdrop-blur-md ">
-        {/* Header Section */}
-        {/* <h1 className="text-5xl font-extrabold text-gray-800 mb-6">
-            Welcome to the Data Analysis App
-        </h1> */}
-
-        {/* Welcome Section */}
-        <div className="mb-12 text-2xl text-gray-700 leading-relaxed">
-            <p className="text-3xl">
-                Welcome to our Customer Churn Analysis Dashboard -
-            </p>
-
-            <p className="mb-2"> a powerful tool designed to help banking professionals make data-driven decisions.
-                Explore trends, compare machine learning models, and predict customer churn with ease.Empower your strategies with actionable insights and real-time analytics.</p>
-            <img
-                src={image_1}
-                alt="Data Analysis Illustration"
-                className="mx-auto rounded-lg shadow-md max-w-xl"
-            />
-        </div>
-
-        {/* Description Section */}
-        <div className="mb-12 text-2xl font-light text-gray-700 leading-relaxed ">
-            <p>
-                Your one-stop solution for understanding and predicting customer
-                behavior.
-            </p>
-            <p >
-                Discover how data can drive better customer retention.
-            </p>
-            <p className="mb-2">
-                Understand, Predict, Retain - Dive into customer churn analysis.
-            </p>
+    <div className="mx-auto p-8 bg-opacity-90 backdrop-blur-md ">
+        <div className="text-3xl mb-6 text-gray-700 leading-relaxed">
+            <p className="text-4xl font-bold mb-4"> Welcome to our Customer Churn Analysis Dashboard - </p>
+            <ul className="list-disc list-inside mb-4 text-left mx-auto ">
+                <li>A powerful tool designed to help banking professionals make data-driven decisions.</li>
+                <li>Explore trends, compare machine learning models, and predict customer churn with ease.</li>
+                <li>Empower your strategies with actionable insights and real-time analytics.</li>
+                <li>Your one-stop solution for understanding and predicting customer behavior.</li>
+                <li>Discover how data can drive better customer retention.</li>
+                <li>Understand, Predict, Retain - Dive into customer churn analysis.</li>
+            </ul>
             <div className="flex justify-evenly items-center">
                 <img
                     src={image_2}
                     alt="Customer Retention Insights"
-                    className="mx-auto rounded-lg shadow-md size-2/5"
+                    className="mx-auto rounded-lg shadow-md w-1/3"
                 />
                 <img
                     src={image_3}
                     alt="Analytics Dashboard"
-                    className="mx-auto mb-12 rounded-lg shadow-md size-2/5"
+                    className="mx-auto mb-12 rounded-lg shadow-md w-1/3"
                 />
             </div>
         </div>
+
 
 
 
