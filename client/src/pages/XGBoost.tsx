@@ -18,7 +18,7 @@ const XGBoost: React.FC = () => {
     useEffect(() => {
         const fetchEdaData = async () => {
             try {
-                const response = await fetch('http://localhost:8000/run-rf');
+                const response = await fetch('http://localhost:8000/run-xgboost');
                 const data = await response.json();
                 console.log(data);
                 setXGData(data);
