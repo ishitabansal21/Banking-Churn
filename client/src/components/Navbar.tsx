@@ -6,7 +6,7 @@ const Navbar: React.FC = () => (
             <div className="flex items-center justify-between h-16">
                 <div className="flex items-center">
                     <Link to="/" className="text-2xl font-bold hover:text-gray-300">
-                        Data Analysis App
+                        BankGuard Analytics
                     </Link>
                 </div>
                 <div className="flex space-x-4">
@@ -62,7 +62,7 @@ const Navbar: React.FC = () => (
                         to="/input-form"
                         className="hover:bg-green-700 px-3 py-2 rounded-md text-sm font-medium"
                     >
-                        Input Form
+                        Prediction Form
                     </Link>
                 </div>
             </div>

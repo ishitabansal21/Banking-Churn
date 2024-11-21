@@ -1,8 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
-import EdaResults from './pages/EdaResults';
-import MlResults from './pages/MLResults';
-import InputForm from './components/InputForm';
 
 import RandomForest from './pages/RandomForest';
 import LogisticRegression from './pages/LogisticRegression';
@@ -10,6 +7,9 @@ import XGBoost from './pages/XGBoost';
 import { SVM } from './pages/SVM';
 import DecisionTree from './pages/DecisionTree';
 import Navbar from './components/Navbar'; // Create Navbar as a separate component
+import EdaResults from './components/EdaResults';
+import MlResults from './components/MLResults';
+import InputForm from './pages/InputForm';
 
 const App: React.FC = () => (
   <Router>
